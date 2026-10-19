@@ -39,14 +39,14 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-custom-bg flex items-center justify-center px-4 transition-colors duration-500 text-custom-text">
 
-      <div className="w-full max-w-6xl grid lg:grid-cols-2 overflow-hidden rounded-3xl border border-slate-800 bg-slate-900 shadow-2xl">
+      <div className="w-full max-w-6xl grid lg:grid-cols-2 overflow-hidden rounded-3xl border border-white/10 bg-custom-card shadow-2xl">
 
-        {/* LADO ESQUERDO */}
-        <div className="hidden lg:flex flex-col justify-center p-12 bg-gradient-to-br from-blue-600 to-indigo-700">
+        {/* LADO ESQUERDO (Mantém a identidade visual padrão de entrada do SaaS) */}
+        <div className="hidden lg:flex flex-col justify-center p-12 bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
 
-          <div className="max-w-md text-white">
+          <div className="max-w-md">
 
             <div className="flex items-center gap-3 mb-6">
               <CalendarDays size={40} />
@@ -85,11 +85,11 @@ export default function LoginPage() {
 
             <div className="mb-8">
 
-              <h2 className="text-3xl font-bold text-white">
+              <h2 className="text-3xl font-bold">
                 Entrar
               </h2>
 
-              <p className="text-slate-400 mt-2">
+              <p className="opacity-70 mt-2">
                 Acesse sua conta para continuar.
               </p>
 
@@ -98,7 +98,7 @@ export default function LoginPage() {
             <div className="space-y-4">
 
               <div>
-                <label className="block text-sm text-slate-300 mb-2">
+                <label className="block text-sm opacity-80 mb-2">
                   E-mail
                 </label>
 
@@ -107,15 +107,16 @@ export default function LoginPage() {
                   placeholder="Digite seu e-mail"
                   className="
                     w-full
-                    bg-slate-800
+                    bg-black/20
                     border
-                    border-slate-700
+                    border-white/10
                     rounded-xl
                     px-4
                     py-3
-                    text-white
+                    text-custom-text
                     outline-none
                     focus:border-blue-500
+                    transition-colors
                   "
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -123,7 +124,7 @@ export default function LoginPage() {
               </div>
 
               <div>
-                <label className="block text-sm text-slate-300 mb-2">
+                <label className="block text-sm opacity-80 mb-2">
                   Senha
                 </label>
 
@@ -132,15 +133,16 @@ export default function LoginPage() {
                   placeholder="Digite sua senha"
                   className="
                     w-full
-                    bg-slate-800
+                    bg-black/20
                     border
-                    border-slate-700
+                    border-white/10
                     rounded-xl
                     px-4
                     py-3
-                    text-white
+                    text-custom-text
                     outline-none
                     focus:border-blue-500
+                    transition-colors
                   "
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -162,13 +164,14 @@ export default function LoginPage() {
                 py-3
                 rounded-xl
                 font-medium
-                transition
+                transition-all
+                shadow-lg
               "
             >
               {loading ? "Entrando..." : "Entrar"}
             </button>
 
-            <p className="text-center text-sm text-slate-500 mt-6">
+            <p className="text-center text-sm opacity-50 mt-6">
               © 2026 AgendaPro
             </p>
 

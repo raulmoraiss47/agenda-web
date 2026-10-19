@@ -6,8 +6,9 @@ import {
   Settings,
   LogOut,
   UserCog,
+  MessageCircle,
+  CreditCard,
 } from "lucide-react";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -19,43 +20,35 @@ export default function Sidebar() {
   const itemBase =
     "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200";
 
+  // Classes dinâmicas baseadas no tema configurado
   const activeClass =
-    "bg-[var(--primary)]/20 text-white border-l-4 border-[var(--primary)]";
+    "bg-custom-primary/10 text-custom-primary border-l-4 border-custom-primary font-medium";
 
   const inactiveClass =
-    "text-slate-300 hover:bg-slate-800 hover:text-white";
-
-  const iconStyle = (active) => ({
-    color: active ? "var(--primary)" : "#94a3b8",
-  });
+    "text-custom-text opacity-70 hover:opacity-100 hover:bg-black/10";
 
   return (
-    <aside className="w-64 bg-slate-900 border-r border-slate-800 text-white p-6 flex flex-col">
-
+    <aside className="w-64 bg-custom-card border-r border-white/10 p-6 flex flex-col transition-colors duration-500">
+      
       {/* Logo */}
       <div className="mb-10">
-        <h1
-          className="text-2xl font-bold"
-          style={{ color: "var(--primary)" }}
-        >
+        <h1 className="text-2xl font-bold text-custom-primary transition-colors duration-500">
           AgendaPro
         </h1>
-
-        <p className="text-xs text-slate-400 mt-1">
+        <p className="text-xs opacity-60 mt-1">
           Cloud Platform
         </p>
       </div>
 
       {/* MENU */}
-      <nav className="flex flex-col gap-2 flex-1">
-
+      <nav className="flex flex-col gap-2 flex-1 overflow-y-auto">
         <Link
           href="/dashboard"
           className={`${itemBase} ${
             isActive("/dashboard") ? activeClass : inactiveClass
           }`}
         >
-          <Home size={18} style={iconStyle(isActive("/dashboard"))} />
+          <Home size={18} className={isActive("/dashboard") ? "text-custom-primary" : "opacity-70"} />
           Dashboard
         </Link>
 
@@ -65,7 +58,7 @@ export default function Sidebar() {
             isActive("/agenda") ? activeClass : inactiveClass
           }`}
         >
-          <Calendar size={18} style={iconStyle(isActive("/agenda"))} />
+          <Calendar size={18} className={isActive("/agenda") ? "text-custom-primary" : "opacity-70"} />
           Agenda
         </Link>
 
@@ -75,7 +68,7 @@ export default function Sidebar() {
             isActive("/clientes") ? activeClass : inactiveClass
           }`}
         >
-          <Users size={18} style={iconStyle(isActive("/clientes"))} />
+          <Users size={18} className={isActive("/clientes") ? "text-custom-primary" : "opacity-70"} />
           Clientes
         </Link>
 
@@ -85,7 +78,7 @@ export default function Sidebar() {
             isActive("/profissionais") ? activeClass : inactiveClass
           }`}
         >
-          <UserCog size={18} style={iconStyle(isActive("/profissionais"))} />
+          <UserCog size={18} className={isActive("/profissionais") ? "text-custom-primary" : "opacity-70"} />
           Profissionais
         </Link>
 
@@ -95,8 +88,29 @@ export default function Sidebar() {
             isActive("/servicos") ? activeClass : inactiveClass
           }`}
         >
-          <Briefcase size={18} style={iconStyle(isActive("/servicos"))} />
+          <Briefcase size={18} className={isActive("/servicos") ? "text-custom-primary" : "opacity-70"} />
           Serviços
+        </Link>
+
+        {/* NOVOS LINKS AQUI */}
+        <Link
+          href="/whatsapp"
+          className={`${itemBase} ${
+            isActive("/whatsapp") ? activeClass : inactiveClass
+          }`}
+        >
+          <MessageCircle size={18} className={isActive("/whatsapp") ? "text-custom-primary" : "opacity-70"} />
+          WhatsApp
+        </Link>
+
+        <Link
+          href="/assinaturas"
+          className={`${itemBase} ${
+            isActive("/assinaturas") ? activeClass : inactiveClass
+          }`}
+        >
+          <CreditCard size={18} className={isActive("/assinaturas") ? "text-custom-primary" : "opacity-70"} />
+          Assinatura
         </Link>
 
         <Link
@@ -105,15 +119,14 @@ export default function Sidebar() {
             isActive("/configuracoes") ? activeClass : inactiveClass
           }`}
         >
-          <Settings size={18} style={iconStyle(isActive("/configuracoes"))} />
+          <Settings size={18} className={isActive("/configuracoes") ? "text-custom-primary" : "opacity-70"} />
           Configurações
         </Link>
-
       </nav>
 
       {/* LOGOUT */}
-      <div className="pt-4 border-t border-slate-800">
-        <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-400 hover:bg-red-500/10">
+      <div className="pt-4 border-t border-white/10 mt-4">
+        <button className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-500/10 transition-colors">
           <LogOut size={18} />
           Sair
         </button>

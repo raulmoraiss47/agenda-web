@@ -20,14 +20,14 @@ const data = [
 
 export default function WeeklyChart() {
   return (
-    <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6">
+    <div className="bg-custom-card border border-white/10 rounded-2xl p-6 transition-colors duration-500 text-custom-text">
 
       <div className="mb-6">
         <h2 className="text-xl font-semibold">
           Agendamentos da Semana
         </h2>
 
-        <p className="text-slate-400 text-sm">
+        <p className="opacity-60 text-sm mt-1">
           Visão geral dos últimos dias
         </p>
       </div>
@@ -35,18 +35,37 @@ export default function WeeklyChart() {
       <div className="h-80">
         <ResponsiveContainer width="100%" height="100%">
           <LineChart data={data}>
+            
+            {/* Eixo X com cor de texto adaptável */}
             <XAxis
               dataKey="dia"
-              stroke="#94a3b8"
+              stroke="var(--color-text)"
+              strokeOpacity={0.5}
+              tick={{ fill: 'var(--color-text)', opacity: 0.7 }}
+              axisLine={{ strokeOpacity: 0.2 }}
+              tickLine={false}
             />
 
-            <Tooltip />
+            {/* Tooltip customizado para obedecer ao tema */}
+            <Tooltip 
+              contentStyle={{ 
+                backgroundColor: 'var(--color-bg)', 
+                borderColor: 'var(--color-card)',
+                color: 'var(--color-text)',
+                borderRadius: '0.75rem',
+                border: '1px solid rgba(255,255,255,0.1)'
+              }}
+              itemStyle={{ color: 'var(--color-primary)', fontWeight: 'bold' }}
+            />
 
+            {/* Linha do gráfico com a cor primária da empresa */}
             <Line
               type="monotone"
               dataKey="agendamentos"
-              stroke="#2563eb"
+              stroke="var(--color-primary)"
               strokeWidth={3}
+              dot={{ fill: 'var(--color-card)', stroke: 'var(--color-primary)', strokeWidth: 2, r: 4 }}
+              activeDot={{ r: 6, fill: 'var(--color-primary)' }}
             />
           </LineChart>
         </ResponsiveContainer>
